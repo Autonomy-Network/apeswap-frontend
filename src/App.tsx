@@ -14,6 +14,7 @@ import Menu from './components/Menu'
 import ToastListener from './components/ToastListener'
 import PageLoader from './components/PageLoader'
 import Pool from './views/Pool'
+import Orders from './views/Orders'
 
 declare module '@emotion/react' {
   export interface Theme extends ApeSwapTheme {}
@@ -210,6 +211,7 @@ const App: React.FC = () => {
               <Home />
             </Route>
             <Route path="/swap" component={Swap} />
+            <Route exact strict path="/orders" component={Orders} />
             <Route path="/farms">
               <Farms />
             </Route>
