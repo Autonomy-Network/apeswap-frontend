@@ -21,6 +21,7 @@ export function useOrderCallback(
   trade: Trade | undefined, // trade to execute, required
   recipientAddressOrName: string | null, // the ENS name or address of the recipient of the trade, or null if swap should be returned to sender
   outputMinMaxAmount: string,
+  orderMarketStatus: number,
 ): { state: SwapCallbackState; callback: null | (() => Promise<string>); error: string | null } {
   const { account, chainId, library } = useActiveWeb3React()
 
@@ -56,7 +57,15 @@ export function useOrderCallback(
         const outputAmount = parseEther(outputMinMaxAmount || '0').div(10 ** (18 - outputCurrencyDecimals))
 
         return autonomyOrdersLib
-          .submitOrder('Limit', inputToken, inputAmount, outputToken, outputAmount, recipient, false)
+          .submitOrder(
+            orderMarketStatus > 0 ? 'Limit' : 'Stop',
+            inputToken,
+            inputAmount,
+            outputToken,
+            outputAmount,
+            recipient,
+            false,
+          )
           .then((response: any) => {
             const inputSymbol = trade.inputAmount.currency.getSymbol(chainId)
             const outputSymbol = trade.outputAmount.currency.getSymbol(chainId)

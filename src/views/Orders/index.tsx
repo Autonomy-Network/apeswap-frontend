@@ -201,8 +201,21 @@ export default function Orders({ history }: RouteComponentProps) {
   const [limitOrderPrice, setLimitOrderPrice] = useState<string>('')
   const [inputFocused, setInputFocused] = useState<boolean>(true)
 
+  const orderMarketStatus = useMemo(() => {
+    const marketOutput = trade?.outputAmount.toExact()
+    if (marketOutput && outputMinAmount) {
+      return ((Number(outputMinAmount) - Number(marketOutput)) * 100) / Number(marketOutput)
+    }
+    return 0
+  }, [trade, outputMinAmount])
+
   // the callback to execute the swap
-  const { callback: swapCallback, error: swapCallbackError } = useOrderCallback(trade, recipient, outputMinAmount)
+  const { callback: swapCallback, error: swapCallbackError } = useOrderCallback(
+    trade,
+    recipient,
+    outputMinAmount,
+    orderMarketStatus,
+  )
 
   const { priceImpactWithoutFee } = computeTradePriceBreakdown(trade)
 
@@ -334,14 +347,6 @@ export default function Orders({ history }: RouteComponentProps) {
     () => (inputFocused ? formattedAmounts[Field.OUTPUT] : outputMinAmount),
     [inputFocused, formattedAmounts, outputMinAmount],
   )
-
-  const orderMarketStatus = useMemo(() => {
-    const marketOutput = trade?.outputAmount.toExact()
-    if (marketOutput && outputMinAmount) {
-      return ((Number(outputMinAmount) - Number(marketOutput)) * 100) / Number(marketOutput)
-    }
-    return 0
-  }, [trade, outputMinAmount])
 
   const handleTypePrice = useCallback(
     (value: string) => {
@@ -504,7 +509,8 @@ export default function Orders({ history }: RouteComponentProps) {
                           disabled={
                             !isValid ||
                             approval !== ApprovalState.APPROVED ||
-                            (priceImpactSeverity > 3 && !isExpertMode)
+                            (priceImpactSeverity > 3 && !isExpertMode) ||
+                            orderMarketStatus === 0
                           }
                         >
                           {priceImpactSeverity > 3 && !isExpertMode
@@ -531,7 +537,12 @@ export default function Orders({ history }: RouteComponentProps) {
                           }
                         }}
                         id="orer-button"
-                        disabled={!isValid || (priceImpactSeverity > 3 && !isExpertMode) || !!swapCallbackError}
+                        disabled={
+                          !isValid ||
+                          (priceImpactSeverity > 3 && !isExpertMode) ||
+                          !!swapCallbackError ||
+                          orderMarketStatus === 0
+                        }
                       >
                         {swapInputError ||
                           (priceImpactSeverity > 3 && !isExpertMode
