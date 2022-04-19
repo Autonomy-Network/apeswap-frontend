@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import { CurrencyAmount, JSBI, Token, Trade } from '@apeswapfinance/sdk'
 import { Button, Text, ArrowDownIcon, useModal, Flex, Card } from '@apeswapfinance/uikit'
 import Page from 'components/layout/Page'
-import WalletTransactions from 'components/RecentTransactions/WalletTransactions'
 import SwapBanner from 'components/SwapBanner'
 import { getTokenUsdPrice } from 'utils/getTokenUsdPrice'
 import track from 'utils/track'
@@ -35,12 +34,7 @@ import {
   useSwapActionHandlers,
   useSwapState,
 } from '../../state/swap/hooks'
-import {
-  useExpertModeManager,
-  useUserSlippageTolerance,
-  useUserSingleHopOnly,
-  useUserRecentTransactions,
-} from '../../state/user/hooks'
+import { useExpertModeManager, useUserSlippageTolerance, useUserSingleHopOnly } from '../../state/user/hooks'
 import { maxAmountSpend } from '../../utils/maxAmountSpend'
 import { computeTradePriceBreakdown, warningSeverity } from '../../utils/prices'
 import { StyledInputCurrencyWrapper, StyledSwapContainer, LargeStyledButton } from './styles'
@@ -220,7 +214,6 @@ export default function Orders({ history }: RouteComponentProps) {
   const { priceImpactWithoutFee } = computeTradePriceBreakdown(trade)
 
   const [singleHopOnly] = useUserSingleHopOnly()
-  const [recentTransactions] = useUserRecentTransactions()
 
   const handleSwap = useCallback(() => {
     if (priceImpactWithoutFee && !confirmPriceImpactWithoutFee(priceImpactWithoutFee)) {
@@ -457,6 +450,10 @@ export default function Orders({ history }: RouteComponentProps) {
                               </Label>
                               <Text color="#FFB300">{orderMarketStatus.toFixed(2)}%</Text>
                             </RowBetween>
+                            <RowBetween align="center">
+                              <Label>Fee:</Label>
+                              <Text color="#FFB300">~10% - ~30% of the gas fee</Text>
+                            </RowBetween>
                           </AutoColumn>
                         </OrderInfoPanel>
                       )}
@@ -565,10 +562,9 @@ export default function Orders({ history }: RouteComponentProps) {
                   </div>
                 </Wrapper>
               </AppBody>
-              {recentTransactions && <WalletTransactions />}
+              <OrderHistoryPanel />
             </StyledInputCurrencyWrapper>
           </StyledSwapContainer>
-          <OrderHistoryPanel />
         </Flex>
       </Flex>
     </Page>

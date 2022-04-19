@@ -2,7 +2,7 @@ import { Order } from '@autonomylabs/limit-stop-orders'
 import { formatUnits } from '@ethersproject/units'
 import React from 'react'
 import styled from 'styled-components'
-import { Button, Flex, Text, InfoIcon, TooltipBubble } from '@apeswapfinance/uikit'
+import { Button, Flex, Text, InfoIcon, TooltipBubble, useMatchBreakpoints } from '@apeswapfinance/uikit'
 import { Token } from '@apeswapfinance/sdk'
 import { CurrencyLogo } from 'components/Logo'
 import { AutoRow } from 'components/layout/Row'
@@ -67,6 +67,8 @@ export default function OrderRow({ order, tokenPair }: IOrderRowProps) {
   const outputAmount = formatUnits(order.outputAmount, tokenPair.output?.decimals)
 
   const autonomyOrdersLib = useAutonomyOrdersLib()
+  const { isMd, isSm, isXs } = useMatchBreakpoints()
+  const isMobile = isMd || isSm || isXs
 
   const handleCancel = React.useCallback(async () => {
     if (autonomyOrdersLib) {
@@ -77,7 +79,11 @@ export default function OrderRow({ order, tokenPair }: IOrderRowProps) {
   return (
     <OrderRowWrapper>
       <TooltipIcon>
-        <TooltipBubble placement="topLeft" body={`Placed on: ${order.time}`} transformTip="translate(-15px, -100%)">
+        <TooltipBubble
+          placement={isMobile ? 'topRight' : 'topLeft'}
+          body={`Placed on: ${order.time}`}
+          transformTip={isMobile ? 'translate(calc(-100% + 45px), -100%)' : 'translate(-15px, -100%)'}
+        >
           <InfoIcon width="25px" />
         </TooltipBubble>
       </TooltipIcon>

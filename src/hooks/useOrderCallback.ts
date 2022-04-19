@@ -3,6 +3,7 @@ import { Trade, Token } from '@apeswapfinance/sdk'
 import { useMemo } from 'react'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { getNativeWrappedAddress } from 'utils/addressHelper'
+import { useUserAutonomyPrepay } from 'state/user/hooks'
 import { useTransactionAdder } from '../state/transactions/hooks'
 import useAutonomyOrdersLib from './useAutonomyOrdersLib'
 import useENS from './ENS/useENS'
@@ -29,6 +30,8 @@ export function useOrderCallback(
 
   const { address: recipientAddress } = useENS(recipientAddressOrName)
   const recipient = recipientAddressOrName === null ? account : recipientAddress
+
+  const [autonomyPrepay] = useUserAutonomyPrepay()
 
   return useMemo(() => {
     if (!trade || !library || !account || !chainId) {
@@ -62,7 +65,7 @@ export function useOrderCallback(
             outputToken,
             outputAmount,
             recipient,
-            false,
+            autonomyPrepay,
           )
           .then((response: any) => {
             return response.hash

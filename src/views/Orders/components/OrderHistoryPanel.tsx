@@ -14,7 +14,7 @@ import { StyledInputCurrencyWrapper, StyledSwapContainer } from '../styles'
 import OrderRow from './OrderRow'
 
 const OrderHistoryContainer = styled(StyledSwapContainer)`
-  margin-top: 20px;
+  margin-top: -40px;
   ${({ theme }) => theme.mediaQueries.md} {
     margin-top: 50px;
   }
@@ -153,23 +153,16 @@ export default function OrderHistoryPanel() {
               <Tab
                 index={0}
                 label="OPEN ORDERS"
-                size={isMobile ? 'xsm' : 'md'}
+                size="md"
                 activeTab={activeTab}
                 variant="fullWidth"
                 onClick={switchTab}
               />
-              <Tab
-                index={1}
-                label="CLOSED"
-                size={isMobile ? 'xsm' : 'md'}
-                variant="fullWidth"
-                activeTab={activeTab}
-                onClick={switchTab}
-              />
+              <Tab index={1} label="CLOSED" size="md" variant="fullWidth" activeTab={activeTab} onClick={switchTab} />
               <Tab
                 index={2}
                 label="CANCELLED"
-                size={isMobile ? 'xsm' : 'md'}
+                size="md"
                 variant="fullWidth"
                 activeTab={activeTab}
                 onClick={switchTab}
