@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react'
-import { Trade, TradeType } from '@apeswapfinance/sdk'
+import { Trade } from '@apeswapfinance/sdk'
 import { Text, ArrowDownIcon } from '@apeswapfinance/uikit'
 import { computeTradePriceBreakdown, warningSeverity } from 'utils/prices'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
@@ -34,7 +34,7 @@ export default function SwapModalHeader({
       <RowBetween align="flex-end">
         <RowFixed gap="0px">
           <CurrencyLogo currency={trade.inputAmount.currency} size="24px" style={{ marginRight: '12px' }} />
-          <TruncatedText fontSize="24px" color={trade.tradeType === TradeType.EXACT_OUTPUT ? 'primary' : 'text'}>
+          <TruncatedText fontSize="24px" color="text">
             {trade.inputAmount.toSignificant(6)}
           </TruncatedText>
         </RowFixed>
@@ -50,10 +50,7 @@ export default function SwapModalHeader({
       <RowBetween align="flex-end">
         <RowFixed gap="0px">
           <CurrencyLogo currency={trade.outputAmount.currency} size="24px" style={{ marginRight: '12px' }} />
-          <TruncatedText
-            fontSize="24px"
-            color={priceImpactSeverity > 2 ? 'error' : trade.tradeType === TradeType.EXACT_INPUT ? 'primary' : 'text'}
-          >
+          <TruncatedText fontSize="24px" color={priceImpactSeverity > 2 ? 'error' : 'text'}>
             {realOutputAmount || trade.outputAmount.toSignificant(6)}
           </TruncatedText>
         </RowFixed>

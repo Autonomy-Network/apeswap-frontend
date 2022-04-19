@@ -419,6 +419,7 @@ export default function Orders({ history }: RouteComponentProps) {
                       otherCurrency={currencies[Field.INPUT]}
                       id="orders-currency-output"
                       orders
+                      disableInput
                     />
                   </OrderPanel>
                   {isExpertMode && recipient !== null && !showWrap ? (
@@ -450,7 +451,10 @@ export default function Orders({ history }: RouteComponentProps) {
                               />
                             </RowBetween>
                             <RowBetween align="center">
-                              <Label>Required BANANA/BNB change:</Label>
+                              <Label>
+                                Required {currencies[Field.INPUT]?.getSymbol(chainId) ?? ''}/
+                                {currencies[Field.OUTPUT]?.getSymbol(chainId) ?? ''} change:
+                              </Label>
                               <Text color="#FFB300">{orderMarketStatus.toFixed(2)}%</Text>
                             </RowBetween>
                           </AutoColumn>

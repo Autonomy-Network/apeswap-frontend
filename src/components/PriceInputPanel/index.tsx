@@ -163,7 +163,7 @@ export default function PriceInputPanel({
         </MessageText>
         <MessageText>
           <MessageText color="#ffb300">{inputValue || '0'}</MessageText>&nbsp;
-          <MessageText bold>{currencySymbol(inputCurrency)}</MessageText>,
+          <MessageText bold>{currencySymbol(inputCurrency)}</MessageText>
         </MessageText>
         <MessageText>will be swapped for</MessageText>
         <MessageText>

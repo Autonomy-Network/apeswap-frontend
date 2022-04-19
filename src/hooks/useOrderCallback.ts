@@ -3,9 +3,7 @@ import { Trade, Token } from '@apeswapfinance/sdk'
 import { useMemo } from 'react'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { getNativeWrappedAddress } from 'utils/addressHelper'
-import truncateHash from 'utils/truncateHash'
 import { useTransactionAdder } from '../state/transactions/hooks'
-import { isAddress } from '../utils'
 import useAutonomyOrdersLib from './useAutonomyOrdersLib'
 import useENS from './ENS/useENS'
 
@@ -67,25 +65,6 @@ export function useOrderCallback(
             false,
           )
           .then((response: any) => {
-            const inputSymbol = trade.inputAmount.currency.getSymbol(chainId)
-            const outputSymbol = trade.outputAmount.currency.getSymbol(chainId)
-            // const inputAmount = trade.inputAmount.toSignificant(3)
-            // const outputAmount = trade.outputAmount.toSignificant(3)
-
-            const base = `Swap ${inputAmount} ${inputSymbol} for ${outputAmount} ${outputSymbol}`
-            const withRecipient =
-              recipient === account
-                ? base
-                : `${base} to ${
-                    recipientAddressOrName && isAddress(recipientAddressOrName)
-                      ? truncateHash(recipientAddressOrName)
-                      : recipientAddressOrName
-                  }`
-
-            addTransaction(response, {
-              summary: withRecipient,
-            })
-
             return response.hash
           })
           .catch((error: any) => {

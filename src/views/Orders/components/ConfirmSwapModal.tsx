@@ -80,7 +80,7 @@ const ConfirmSwapModal: React.FC<ModalProps & ConfirmSwapModalProps> = ({
 
   return (
     <TransactionConfirmationModal
-      title="Confirm Swap"
+      title="Confirm Order"
       onDismiss={onDismiss}
       customOnDismiss={customOnDismiss}
       attemptingTxn={attemptingTxn}

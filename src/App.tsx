@@ -149,6 +149,7 @@ const App: React.FC = () => {
                 <DualFarms />
               </Route>
               <Route path="/swap" component={Swap} />
+              <Route exact strict path="/orders" component={RedirectPathToSwapOnly} />
               <Route path="/vaults">
                 <Vaults />
               </Route>

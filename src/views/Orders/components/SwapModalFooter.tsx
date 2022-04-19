@@ -37,7 +37,7 @@ export default function SwapModalFooter({
     <>
       <SwapModalFooterContainer>
         <RowBetween align="center">
-          <Text fontSize="14px">Price</Text>
+          <Text fontSize="14px">Target Order Price</Text>
           <Text
             fontSize="14px"
             style={{
