@@ -152,17 +152,24 @@ export default function OrderHistoryPanel() {
             <Tabs activeTab={activeTab} size="md" variant="fullWidth">
               <Tab
                 index={0}
-                label="OPEN ORDERS"
-                size="md"
+                label="OPEN"
+                size={isMobile ? 'xsm' : 'md'}
                 activeTab={activeTab}
                 variant="fullWidth"
                 onClick={switchTab}
               />
-              <Tab index={1} label="CLOSED" size="md" variant="fullWidth" activeTab={activeTab} onClick={switchTab} />
+              <Tab
+                index={1}
+                label="CLOSED"
+                size={isMobile ? 'xsm' : 'md'}
+                variant="fullWidth"
+                activeTab={activeTab}
+                onClick={switchTab}
+              />
               <Tab
                 index={2}
                 label="CANCELLED"
-                size="md"
+                size={isMobile ? 'xsm' : 'md'}
                 variant="fullWidth"
                 activeTab={activeTab}
                 onClick={switchTab}

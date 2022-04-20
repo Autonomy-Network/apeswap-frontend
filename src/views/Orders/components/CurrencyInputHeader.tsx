@@ -68,9 +68,10 @@ const CurrencyInputHeader: React.FC<Props> = () => {
             style={{
               fontSize: '15px',
               fontWeight: 700,
-              marginRight: isMobile ? '15px ' : '25px',
+              marginRight: '25px',
               marginLeft: '15px',
               padding: 10,
+              display: isMobile ? 'none' : 'block',
             }}
           >
             BRIDGE
