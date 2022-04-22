@@ -102,7 +102,6 @@ export default function OrderHistoryPanel() {
   const [currentOrders, setCurrentOrders] = useState<Order[]>([])
   const [pageCount, setPageCount] = useState(0)
   const [orderOffset, setOrderOffset] = useState(0)
-  const orderStatus: OrderStatus[] = ['open', 'executed', 'cancelled']
   const { isMd, isSm, isXs } = useMatchBreakpoints()
   const isMobile = isMd || isSm || isXs
 
@@ -133,6 +132,7 @@ export default function OrderHistoryPanel() {
 
   useEffect(() => {
     if (data) {
+      const orderStatus: OrderStatus[] = ['open', 'executed', 'cancelled']
       setOrders(data.filter((order) => order.status === orderStatus[activeTab]))
       setOrderOffset(0)
     }

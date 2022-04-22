@@ -16,7 +16,7 @@
     "no-console": ["warn", { "allow": ["info", "warn", "error", "debug"] }],
     "no-plusplus": 0,
     "prefer-destructuring": ["warn", { "object": true, "array": false }],
-    "camelcase": ["error", {"allow": ["trait_type", "user_id"]}],
+    "camelcase": ["error", { "allow": ["trait_type", "user_id"] }],
     "no-underscore-dangle": 0,
     "import/prefer-default-export": 0,
     // Start temporary rules
@@ -31,7 +31,6 @@
     "import/no-extraneous-dependencies": 0,
     "react/require-default-props": 0,
     "react/no-unused-prop-types": 0,
-    "react-hooks/exhaustive-deps": 0,
     "no-param-reassign": 0,
     "no-nested-ternary": 0
     // End temporary rules

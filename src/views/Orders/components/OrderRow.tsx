@@ -62,6 +62,27 @@ interface IOrderRowProps {
   }
 }
 
+const TooltipContent = ({ order }: { order: Order }) => {
+  return (
+    <Flex flexDirection="column">
+      <Flex justifyContent="space-between" alignItems="center">
+        <Text fontSize="12px">Placed:</Text>
+        <Text fontSize="12px" bold>
+          {order.time}
+        </Text>
+      </Flex>
+      {order.updateTime !== 'null' && (
+        <Flex justifyContent="space-between" alignItems="center" mt={1}>
+          <Text fontSize="12px">{order.status === 'executed' ? 'Closed:' : 'Cancelled:'}</Text>
+          <Text fontSize="12px" bold>
+            {order.updateTime}
+          </Text>
+        </Flex>
+      )}
+    </Flex>
+  )
+}
+
 export default function OrderRow({ order, tokenPair }: IOrderRowProps) {
   const inputAmount = formatUnits(order.inputAmount, tokenPair.input?.decimals)
   const outputAmount = formatUnits(order.outputAmount, tokenPair.output?.decimals)
@@ -81,8 +102,9 @@ export default function OrderRow({ order, tokenPair }: IOrderRowProps) {
       <TooltipIcon>
         <TooltipBubble
           placement={isMobile ? 'topRight' : 'topLeft'}
-          body={`Placed on: ${order.time}`}
-          transformTip={isMobile ? 'translate(calc(-100% + 45px), -100%)' : 'translate(-15px, -100%)'}
+          body={<TooltipContent order={order} />}
+          transformTip={isMobile ? 'translate(calc(-100% + 45px), -100%)' : 'translate(-22px, -100%)'}
+          width="300px"
         >
           <InfoIcon width="25px" />
         </TooltipBubble>

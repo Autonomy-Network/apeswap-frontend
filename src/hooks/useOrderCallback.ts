@@ -4,7 +4,6 @@ import { useMemo } from 'react'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { getNativeWrappedAddress } from 'utils/addressHelper'
 import { useUserAutonomyPrepay } from 'state/user/hooks'
-import { useTransactionAdder } from '../state/transactions/hooks'
 import useAutonomyOrdersLib from './useAutonomyOrdersLib'
 import useENS from './ENS/useENS'
 
@@ -25,8 +24,6 @@ export function useOrderCallback(
   const { account, chainId, library } = useActiveWeb3React()
 
   const autonomyOrdersLib = useAutonomyOrdersLib()
-
-  const addTransaction = useTransactionAdder()
 
   const { address: recipientAddress } = useENS(recipientAddressOrName)
   const recipient = recipientAddressOrName === null ? account : recipientAddress
@@ -82,5 +79,16 @@ export function useOrderCallback(
       },
       error: null,
     }
-  }, [trade, library, account, chainId, recipient, recipientAddressOrName, addTransaction])
+  }, [
+    trade,
+    library,
+    account,
+    chainId,
+    recipient,
+    autonomyOrdersLib,
+    autonomyPrepay,
+    orderMarketStatus,
+    outputMinMaxAmount,
+    recipientAddressOrName,
+  ])
 }

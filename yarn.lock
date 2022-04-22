@@ -76,10 +76,10 @@
     theme-ui "^0.13.1"
     yalc "^1.0.0-pre.53"
 
-"@autonomylabs/limit-stop-orders@^0.0.3":
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/@autonomylabs/limit-stop-orders/-/limit-stop-orders-0.0.3.tgz#bc2bd0288766bd9121bb5dc84ce82ec6ec7ae5ae"
-  integrity sha512-fikqX7CpxhcJREFRk7JOLUtgfa+9MxaaWD1y14RIc+vjZHNOHurBcBjPMGb+naj7Qb90BV9mx4UA86ByhalvXQ==
+"@autonomylabs/limit-stop-orders@^0.0.4":
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/@autonomylabs/limit-stop-orders/-/limit-stop-orders-0.0.4.tgz#515a093ba2ec69be045720fb12d5ee5fb5251dfc"
+  integrity sha512-HTxyJBMTA0OGjRt4v3yt/Zb/J+ML54GHVonIL3dJKtg9+xwrYy+EcVGotvdQuYsFX0MhhIqnP1wnRoXrLEFcGg==
   dependencies:
     "@traderjoe-xyz/core" "^2.2.2"
     "@uniswap/sdk-core" "^3.0.1"
@@ -14791,10 +14791,15 @@ tslib@^1.10.0, tslib@^1.8.1, tslib@^1.9.0:
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.14.1.tgz#cf2d38bdc34a134bcaf1091c41f6619e2f672d00"
   integrity sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==
 
-tslib@^2.0.0, tslib@^2.0.3, tslib@^2.1.0, tslib@^2.3.1:
+tslib@^2.0.0, tslib@^2.0.3, tslib@^2.1.0:
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.3.1.tgz#e8a335add5ceae51aa261d32a490158ef042ef01"
   integrity sha512-77EbyPPpMz+FRFRuAFlWMtmgUWGe9UOG2Z25NqCwiIjRhOf5iKGuzSe5P2w1laq+FkRy4p+PCuVkJSGkzTEKVw==
+
+tslib@^2.3.1:
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.4.0.tgz#7cecaa7f073ce680a05847aa77be941098f36dc3"
+  integrity sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ==
 
 tsutils@^3.17.1, tsutils@^3.21.0:
   version "3.21.0"

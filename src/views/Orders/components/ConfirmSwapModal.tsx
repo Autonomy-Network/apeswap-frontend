@@ -47,7 +47,7 @@ const ConfirmSwapModal: React.FC<ModalProps & ConfirmSwapModalProps> = ({
         realOutputAmount={realOutputAmount}
       />
     ) : null
-  }, [allowedSlippage, recipient, trade])
+  }, [allowedSlippage, recipient, trade, realOutputAmount])
 
   const modalBottom = useCallback(() => {
     return trade ? (
@@ -59,7 +59,7 @@ const ConfirmSwapModal: React.FC<ModalProps & ConfirmSwapModalProps> = ({
         realSwapPrice={realSwapPrice}
       />
     ) : null
-  }, [allowedSlippage, onConfirm, swapErrorMessage, trade])
+  }, [allowedSlippage, onConfirm, swapErrorMessage, trade, realSwapPrice])
 
   // text to show while loading
   const pendingText = `Swapping ${trade?.inputAmount?.toSignificant(6) ?? ''} ${

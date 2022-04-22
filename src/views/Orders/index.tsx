@@ -146,6 +146,7 @@ export default function Orders({ history }: RouteComponentProps) {
     txHash: undefined,
   })
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const formattedAmounts = {
     [independentField]: typedValue,
     [dependentField]: showWrap
