@@ -148,7 +148,7 @@ export default function OrderRow({ order, tokenPair }: IOrderRowProps) {
             {(+outputAmount / +inputAmount).toFixed(6)}
           </Text>
           <Text fontSize="12px" color="#ffb300" style={{ opacity: 0.6 }}>
-            {tokenPair.input?.symbol} / {tokenPair.output?.symbol}
+            {tokenPair.output?.symbol} / {tokenPair.input?.symbol}
           </Text>
         </OrderCol>
         {order.status === 'open' && <Button onClick={handleCancel}>Cancel</Button>}

@@ -119,13 +119,6 @@ export default function Orders({ history }: RouteComponentProps) {
   const isValid = !swapInputError
   const dependentField: Field = independentField === Field.INPUT ? Field.OUTPUT : Field.INPUT
 
-  const handleTypeInput = useCallback(
-    (value: string) => {
-      onUserInput(Field.INPUT, value)
-    },
-    [onUserInput],
-  )
-
   const handleTypeOutput = useCallback(
     (value: string) => {
       onUserInput(Field.OUTPUT, value)
@@ -203,6 +196,14 @@ export default function Orders({ history }: RouteComponentProps) {
     }
     return 0
   }, [trade, outputMinAmount])
+
+  const handleTypeInput = useCallback(
+    (value: string) => {
+      onUserInput(Field.INPUT, value)
+      setInputFocused(true)
+    },
+    [onUserInput, setInputFocused],
+  )
 
   // the callback to execute the swap
   const { callback: swapCallback, error: swapCallbackError } = useOrderCallback(

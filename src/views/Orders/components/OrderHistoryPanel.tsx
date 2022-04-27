@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react'
 import ReactPaginate from 'react-paginate'
 import { useQuery } from 'react-query'
 import styled from 'styled-components'
-import { useMatchBreakpoints, Tabs, Tab } from '@apeswapfinance/uikit'
+import { useMatchBreakpoints, Tabs, Tab, Text } from '@apeswapfinance/uikit'
 
 import { AppBody } from '../../../components/App'
 import { useAllTokens } from '../../../hooks/Tokens'
@@ -178,7 +178,11 @@ export default function OrderHistoryPanel() {
           </TabWrapper>
           <TabContent id="order-history-panel">
             <div>
-              <OrderRows orders={currentOrders} />
+              {currentOrders.length > 0 ? (
+                <OrderRows orders={currentOrders} />
+              ) : (
+                <Text textAlign="center">No {activeTab} orders</Text>
+              )}
             </div>
             <Pagination
               previousLabel="<"

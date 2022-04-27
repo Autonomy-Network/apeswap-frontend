@@ -2,6 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 import { Flex, Button, useMatchBreakpoints, Tabs, Tab } from '@apeswapfinance/uikit'
 import GlobalSettings from 'components/Menu/GlobalSettings'
+import { CHAIN_ID } from 'config/constants/chains'
+import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { useLocation, useHistory } from 'react-router-dom'
 
 interface Props {
@@ -23,6 +25,7 @@ const CurrencyInputContainer = styled(Flex)`
 
 const CurrencyInputHeader: React.FC<Props> = () => {
   const { isMd, isSm, isXs } = useMatchBreakpoints()
+  const { chainId } = useActiveWeb3React()
   const history = useHistory()
   const isMobile = isMd || isSm || isXs
   const path = useLocation()
@@ -45,14 +48,18 @@ const CurrencyInputHeader: React.FC<Props> = () => {
           variant="centered"
           activeTab={getActiveTab()}
         />
-        <Tab
-          index={1}
-          label="ORDERS"
-          onClick={() => history.push('/orders')}
-          size={isMobile ? 'xsm' : 'md'}
-          variant="centered"
-          activeTab={getActiveTab()}
-        />
+        {chainId === CHAIN_ID.BSC ? (
+          <Tab
+            index={1}
+            label="ORDERS"
+            onClick={() => history.push('/orders')}
+            size={isMobile ? 'xsm' : 'md'}
+            variant="centered"
+            activeTab={getActiveTab()}
+          />
+        ) : (
+          <></>
+        )}
         <Tab
           index={2}
           label="LIQUIDITY"
