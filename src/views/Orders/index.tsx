@@ -185,9 +185,24 @@ export default function Orders({ history }: RouteComponentProps) {
   const maxAmountInput: CurrencyAmount | undefined = maxAmountSpend(currencyBalances[Field.INPUT])
   const atMaxAmountInput = Boolean(maxAmountInput && parsedAmounts[Field.INPUT]?.equalTo(maxAmountInput))
 
-  const [outputMinAmount, setOutputMinAmount] = useState<string>('')
   const [limitOrderPrice, setLimitOrderPrice] = useState<string>('')
   const [inputFocused, setInputFocused] = useState<boolean>(true)
+  const realPriceValue = useMemo(() => {
+    if (inputFocused) {
+      const price = Number(formattedAmounts[Field.OUTPUT]) / Number(formattedAmounts[Field.INPUT])
+      return price === Infinity || Number.isNaN(price) ? '' : price.toFixed(6)
+    }
+    return limitOrderPrice
+  }, [inputFocused, limitOrderPrice, formattedAmounts])
+
+  const outputMinAmount = useMemo(() => {
+    return (Number(realPriceValue) * Number(formattedAmounts[Field.INPUT])).toString()
+  }, [realPriceValue, formattedAmounts])
+
+  const realOutputValue = useMemo(
+    () => (inputFocused ? formattedAmounts[Field.OUTPUT] : outputMinAmount),
+    [inputFocused, formattedAmounts, outputMinAmount],
+  )
 
   const orderMarketStatus = useMemo(() => {
     const marketOutput = trade?.outputAmount.toExact()
@@ -330,27 +345,12 @@ export default function Orders({ history }: RouteComponentProps) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [importTokensNotInDefault.length])
 
-  const realPriceValue = useMemo(() => {
-    if (inputFocused) {
-      const price = Number(formattedAmounts[Field.OUTPUT]) / Number(formattedAmounts[Field.INPUT])
-      return price === Infinity || Number.isNaN(price) ? '' : price.toFixed(6)
-    }
-    return limitOrderPrice
-  }, [inputFocused, limitOrderPrice, formattedAmounts])
-
-  const realOutputValue = useMemo(
-    () => (inputFocused ? formattedAmounts[Field.OUTPUT] : outputMinAmount),
-    [inputFocused, formattedAmounts, outputMinAmount],
-  )
-
   const handleTypePrice = useCallback(
     (value: string) => {
       setInputFocused(false)
       setLimitOrderPrice(value)
-      const outputAmount = Number(value) * Number(formattedAmounts[Field.INPUT])
-      setOutputMinAmount(outputAmount.toString())
     },
-    [formattedAmounts, setInputFocused, setLimitOrderPrice, setOutputMinAmount],
+    [setInputFocused, setLimitOrderPrice],
   )
 
   const [onPresentConfirmModal] = useModal(

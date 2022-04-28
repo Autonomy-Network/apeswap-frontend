@@ -104,6 +104,7 @@ export default function OrderHistoryPanel() {
   const [orderOffset, setOrderOffset] = useState(0)
   const { isMd, isSm, isXs } = useMatchBreakpoints()
   const isMobile = isMd || isSm || isXs
+  const orderStatusLabels = ['Open', 'Closed', 'Cancelled']
 
   const autonomyOrdersLib = useAutonomyOrdersLib()
   const { account } = useActiveWeb3React()
@@ -181,7 +182,7 @@ export default function OrderHistoryPanel() {
               {currentOrders.length > 0 ? (
                 <OrderRows orders={currentOrders} />
               ) : (
-                <Text textAlign="center">No {activeTab} orders</Text>
+                <Text textAlign="center">No {orderStatusLabels[activeTab]} orders</Text>
               )}
             </div>
             <Pagination
