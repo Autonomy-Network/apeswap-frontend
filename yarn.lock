@@ -9,10 +9,10 @@
   dependencies:
     "@jridgewell/trace-mapping" "^0.3.0"
 
-"@ape.swap/uikit@^1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@ape.swap/uikit/-/uikit-1.0.1.tgz#175c4d9c0513ffee3f2a351a594ffc61477df09e"
-  integrity sha512-6XOmBQMaJZv5i41X5ED4CRd2uOeL0a/w7Ce2LYNr7fBh54E3OWgk9IyuThmZ/c4dhmiqgYUeYx5LBTYcgZkONw==
+"@ape.swap/uikit@^1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@ape.swap/uikit/-/uikit-1.0.3.tgz#0dc63c989fe56b737f567c2eae44ff542dc98d23"
+  integrity sha512-/WauZbzeu2z8usW6qnExx4linA6rhwXM/3BZBtjFGKcVrwrDhjoDHyl+xXnMoTvh5Iy4xpmVbYSOE/iQx4T0Fg==
   dependencies:
     "@emotion/react" "^11.7.1"
     "@emotion/styled" "^11.8.1"
@@ -55,10 +55,10 @@
     tiny-warning "^1.0.3"
     toformat "^2.0.0"
 
-"@apeswapfinance/token-lists@1.0.261":
-  version "1.0.261"
-  resolved "https://npm.pkg.github.com/download/@apeswapfinance/token-lists/1.0.261/9124183ee254febbe9160bb5d8b34273d4e56cb9a74ef9256839dd5335c3e73d#f47dda9a8c45b95e0f10172cb2505675f31ba75b"
-  integrity sha512-q4AscZLkIImkVc9cF8ojNyvJgJoXlVxDdDXh9QKrTpb2cJG0BTaEEp4WWmxK3WE/S4HZlPecsF58CcuIfb+URw==
+"@apeswapfinance/token-lists@1.0.267":
+  version "1.0.267"
+  resolved "https://npm.pkg.github.com/download/@apeswapfinance/token-lists/1.0.267/71aa8573cedbe3b551d2352ed91407f9b2afe5d9e7f19dcccc6efb22964583fa#77cb79f4fb294d881e459f1cd99552bb4be337e2"
+  integrity sha512-0wz5n+BFOJCqQ5DnogpF3SVb8jL6IUBZZ3YcdFF6rPU7Ss+ZQNZZHsktuBo6IIGABukCO5q5BY1Tgo/0Y7NMkA==
 
 "@apeswapfinance/uikit@0.11.2-1.6":
   version "0.11.2-1.6"
